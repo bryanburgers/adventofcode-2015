@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha ./test/*",
     "01a": "node ./01/a.js < ./01/input",
-    "01b": "node ./01/b.js < ./01/input"
+    "01b": "node ./01/b.js < ./01/input",
+    "03a": "node ./03/a.js < ./03/input"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/bryanburgers/adventofcode-2015",
   "devDependencies": {
+    "expect": "^1.13.2",
     "mocha": "^2.3.4"
   },
   "dependencies": {
