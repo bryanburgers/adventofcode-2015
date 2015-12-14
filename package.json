@@ -10,7 +10,8 @@
     "03a": "node ./03/a.js < ./03/input",
     "03b": "node ./03/b.js < ./03/input",
     "04a": "node ./04/a.js < ./04/input",
-    "04b": "node ./04/b.js < ./04/input"
+    "04b": "node ./04/b.js < ./04/input",
+    "05a": "node ./05/a.js < ./05/input"
   },
   "repository": {
     "type": "git",
