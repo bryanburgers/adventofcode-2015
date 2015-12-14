@@ -3,6 +3,7 @@
 const expect = require('expect');
 const grid = require('../../06/grid');
 const command = require('../../06/command');
+const brightnessgrid = require('../../06/brightnessgrid');
 
 describe('06', function() {
     describe('grid', function() {
@@ -128,6 +129,128 @@ describe('06', function() {
                 expect(g.isOn([0, 0])).toEqual(true);
                 expect(g.isOn([1, 3])).toEqual(false);
             });
+        });
+    });
+    describe('brightnessgrid', function() {
+        it('should be able to turn on a single light', function() {
+            let g = brightnessgrid(10, 10);
+            g.turnOn([0, 0], [0, 0]);
+            expect(g.brightness([0, 0])).toEqual(1);
+            expect(g.brightness([0, 1])).toEqual(0);
+        });
+        it('should be able to turn on a single light twice', function() {
+            let g = brightnessgrid(10, 10);
+            g.turnOn([0, 0], [0, 0]);
+            expect(g.brightness([0, 0])).toEqual(1);
+            g.turnOn([0, 0], [0, 0]);
+            expect(g.brightness([0, 0])).toEqual(2);
+        });
+        it('should be able to turn on a range of lights', function() {
+            let g = brightnessgrid(10, 10);
+            g.turnOn([0, 0], [2, 3]);
+            for (let x = 0; x <= 2; x++) {
+                for (let y = 0; y <= 3; y++) {
+                    expect(g.brightness([x, y])).toEqual(1);
+                }
+            }
+            g.turnOn([0, 0], [2, 3]);
+            for (let x = 0; x <= 2; x++) {
+                for (let y = 0; y <= 3; y++) {
+                    expect(g.brightness([x, y])).toEqual(2);
+                }
+            }
+            expect(g.brightness([3, 0])).toEqual(0);
+        });
+        it('should be able to turn off a single light', function() {
+            let g = brightnessgrid(10, 10);
+            g.turnOn([0, 0], [10, 10]);
+            g.turnOff([0, 0], [0, 0]);
+            expect(g.brightness([0, 0])).toEqual(0);
+            expect(g.brightness([0, 1])).toEqual(1);
+        });
+        it('should be able to turn off a single light twice', function() {
+            let g = brightnessgrid(10, 10);
+            g.turnOn([0, 0], [10, 10]);
+            g.turnOn([0, 0], [10, 10]);
+            g.turnOff([0, 0], [0, 0]);
+            expect(g.brightness([0, 0])).toEqual(1);
+            g.turnOff([0, 0], [0, 0]);
+            expect(g.brightness([0, 0])).toEqual(0);
+        });
+        it('should only be allowed to turn off a single light down to zero', function() {
+            let g = brightnessgrid(10, 10);
+            g.turnOn([0, 0], [10, 10]);
+            g.turnOn([0, 0], [10, 10]);
+            g.turnOff([0, 0], [0, 0]);
+            expect(g.brightness([0, 0])).toEqual(1);
+            g.turnOff([0, 0], [0, 0]);
+            expect(g.brightness([0, 0])).toEqual(0);
+            g.turnOff([0, 0], [0, 0]);
+            expect(g.brightness([0, 0])).toEqual(0);
+        });
+        it('should be able to turn off a range of lights', function() {
+            let g = brightnessgrid(10, 10);
+            g.turnOn([0, 0], [10, 10]);
+            g.turnOn([0, 0], [10, 10]);
+            g.turnOff([0, 0], [2, 3]);
+            for (let x = 0; x <= 2; x++) {
+                for (let y = 0; y <= 3; y++) {
+                    expect(g.brightness([x, y])).toEqual(1);
+                }
+            }
+            g.turnOff([0, 0], [2, 3]);
+            for (let x = 0; x <= 2; x++) {
+                for (let y = 0; y <= 3; y++) {
+                    expect(g.brightness([x, y])).toEqual(0);
+                }
+            }
+        });
+        it('should be able to toggle a single light', function() {
+            let g = brightnessgrid(10, 10);
+            g.toggle([0, 0], [0, 0]);
+            expect(g.brightness([0, 0])).toEqual(2);
+            g.toggle([0, 0], [0, 0]);
+            expect(g.brightness([0, 0])).toEqual(4);
+        });
+        it('should be able to toggle a range of lights', function() {
+            let g = brightnessgrid(10, 10);
+            g.toggle([0, 0], [2, 2]);
+            for (let x = 0; x <= 2; x++) {
+                for (let y = 0; y <= 2; y++) {
+                    expect(g.brightness([x, y])).toEqual(2);
+                }
+            }
+            g.toggle([0, 0], [2, 2]);
+            for (let x = 0; x <= 2; x++) {
+                for (let y = 0; y <= 2; y++) {
+                    expect(g.brightness([x, y])).toEqual(4);
+                }
+            }
+        });
+        it('should be able to toggle lights independently', function() {
+            let g = brightnessgrid(10, 10);
+            g.toggle([0, 1], [0, 1]);
+            expect(g.brightness([0, 0])).toEqual(0);
+            expect(g.brightness([0, 1])).toEqual(2);
+            g.toggle([0, 0], [0, 1]);
+            expect(g.brightness([0, 0])).toEqual(2);
+            expect(g.brightness([0, 1])).toEqual(4);
+            g.toggle([0, 0], [0, 1]);
+            expect(g.brightness([0, 0])).toEqual(4);
+            expect(g.brightness([0, 1])).toEqual(6);
+        });
+        it('counts how many lights are lit', function() {
+            let g = brightnessgrid(10, 10);
+            expect(g.totalBrightness()).toEqual(0);
+            g.turnOn([0, 0], [1, 1]);
+            expect(g.totalBrightness()).toEqual(4);
+            g.turnOn([0, 0], [1, 1]);
+            expect(g.totalBrightness()).toEqual(8);
+            g.turnOff([0, 0], [9, 9]);
+            g.turnOff([0, 0], [9, 9]);
+            g.turnOff([0, 0], [9, 9]);
+            g.turnOn([0, 0], [9, 9]);
+            expect(g.totalBrightness()).toEqual(100);
         });
     });
 });

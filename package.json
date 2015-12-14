@@ -13,7 +13,8 @@
     "04b": "node ./04/b.js < ./04/input",
     "05a": "node ./05/a.js < ./05/input",
     "05b": "node ./05/b.js < ./05/input",
-    "06a": "node ./06/a.js < ./06/input"
+    "06a": "node ./06/a.js < ./06/input",
+    "06b": "node ./06/b.js < ./06/input"
   },
   "repository": {
     "type": "git",
