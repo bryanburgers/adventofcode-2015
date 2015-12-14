@@ -17,4 +17,10 @@ describe('01a', function() {
             assert.equal(-3, elevator.count(')())())'));
         })
     });
+    describe('elevatorIndex', function() {
+        it('should match the given inputs', function() {
+            assert.equal(1, elevator.index(')'));
+            assert.equal(5, elevator.index('()())'));
+        })
+    });
 });
