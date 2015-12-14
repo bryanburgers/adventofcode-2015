@@ -53,3 +53,35 @@ exports.countLines = function countLines(input) {
     }
     return count;
 }
+
+exports.check2 = function check2(input) {
+    let twoLetterDuplicate = false;
+    for (let i = 0; i < input.length - 2; i++) {
+        let two = input.substring(i, i + 2);
+        let lastIndex = input.lastIndexOf(two);
+        if (lastIndex >= i + 2) {
+            twoLetterDuplicate = true;
+            break;
+        }
+    }
+
+    let oneLetterDuplicate = false;
+    for (let j = 0; j < input.length; j++) {
+        if (input[j] == input[j+2]) {
+            oneLetterDuplicate = true;
+            break;
+        }
+    }
+
+    return twoLetterDuplicate && oneLetterDuplicate;
+}
+
+exports.countLines2 = function countLines2(input) {
+    let count = 0;
+    for (let line of input.split('\n')) {
+        if (exports.check2(line)) {
+            count++;
+        }
+    }
+    return count;
+}

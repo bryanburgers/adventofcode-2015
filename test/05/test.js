@@ -19,4 +19,17 @@ describe('03', function() {
             expect(nicelist.check('aaaxy')).toEqual(false);
         });
     });
+    describe('nicelist.check2', function() {
+        it('should match the given inputs', function() {
+            expect(nicelist.check2('qjhvhtzxzqqjkmpb')).toEqual(true);
+            expect(nicelist.check2('xxyxx')).toEqual(true);
+            expect(nicelist.check2('uurcxstgmygtbstg')).toEqual(false);
+            expect(nicelist.check2('ieodomkazucvgmuy')).toEqual(false);
+            expect(nicelist.check2('dvszwmarrgswjxmb')).toEqual(false);
+        });
+        it('other sanity checks', function() {
+            expect(nicelist.check2('aaabcb')).toEqual(false);
+            expect(nicelist.check2('cdcdaba')).toEqual(true);
+        });
+    });
 });
