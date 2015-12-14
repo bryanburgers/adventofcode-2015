@@ -13,10 +13,10 @@ describe('03', function() {
     describe('adventcoin.mine', function() {
         this.timeout(0);
         it('should match the given input 1', function() {
-            expect(adventcoin.mine('abcdef')).toEqual(609043);
+            expect(adventcoin.mine('abcdef', '00000')).toEqual(609043);
         });
         it('should match the given input 2', function() {
-            expect(adventcoin.mine('pqrstuv')).toEqual(1048970);
+            expect(adventcoin.mine('pqrstuv', '00000')).toEqual(1048970);
         })
     });
 });

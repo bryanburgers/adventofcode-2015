@@ -9,13 +9,13 @@ exports.hash = function hash(key, number) {
     return h.digest('hex');
 }
 
-exports.mine = function mine(key) {
+exports.mine = function mine(key, prefix) {
 
     let i = 1;
 
     while (true) {
         let h = exports.hash(key, i);
-        if (h.substring(0, 5) == '00000') {
+        if (h.substring(0, prefix.length) == prefix) {
             return i;
         }
 
