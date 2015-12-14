@@ -4,7 +4,8 @@
   "description": "Code to solve adventofcode.com problems",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./test/*",
+    "01a": "node ./01/a.js < ./01/input"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/bryanburgers/adventofcode-2015",
   "devDependencies": {
     "mocha": "^2.3.4"
+  },
+  "dependencies": {
+    "request": "^2.67.0"
   }
 }
