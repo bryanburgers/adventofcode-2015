@@ -42,3 +42,41 @@ exports.unique = function unique(input) {
 
     return unique;
 }
+
+exports.splitInput = function splitInput(input) {
+    let santa = '';
+    let robo = '';
+    let isSanta = true;
+
+    for (let char of input) {
+        if (isSanta) {
+            santa += char;
+        }
+        else {
+            robo += char;
+        }
+        isSanta = !isSanta;
+    }
+
+    return [santa, robo];
+}
+
+exports.unique2 = function unique2(input) {
+    let inputs = exports.splitInput(input);
+    let pathSanta = exports.path(inputs[0]);
+    let pathRobo = exports.path(inputs[1]);
+    let houses = pathSanta.concat(pathRobo);
+    houses.sort();
+    let unique = 0;
+    let last = null;
+    for (let item of houses) {
+        if (item == last) {
+            continue;
+        }
+
+        last = item;
+        unique++;
+    }
+
+    return unique;
+}

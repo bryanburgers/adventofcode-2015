@@ -19,4 +19,18 @@ describe('03', function() {
             expect(santa.unique('^v^v^v^v^v')).toEqual(2);
         })
     });
+    describe('santa.splitInput', function() {
+        it('should match the given inputs', function() {
+            expect(santa.splitInput('^v')).toEqual(['^', 'v']);
+            expect(santa.splitInput('^>v<')).toEqual(['^v', '><']);
+            expect(santa.splitInput('^v^v^v^v^v')).toEqual(['^^^^^', 'vvvvv']);
+        })
+    });
+    describe('santa.unique2', function() {
+        it('should match the given inputs', function() {
+            expect(santa.unique2('^v')).toEqual(3);
+            expect(santa.unique2('^>v<')).toEqual(3);
+            expect(santa.unique2('^v^v^v^v^v')).toEqual(11);
+        })
+    });
 });

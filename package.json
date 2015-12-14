@@ -7,7 +7,8 @@
     "test": "mocha ./test/*",
     "01a": "node ./01/a.js < ./01/input",
     "01b": "node ./01/b.js < ./01/input",
-    "03a": "node ./03/a.js < ./03/input"
+    "03a": "node ./03/a.js < ./03/input",
+    "03b": "node ./03/b.js < ./03/input"
   },
   "repository": {
     "type": "git",
