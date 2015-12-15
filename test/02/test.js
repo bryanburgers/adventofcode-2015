@@ -24,4 +24,11 @@ describe('02', function() {
             assert.equal(wrapping.total('2x3x4\r\n1x1x10\r\n'), 101);
         });
     });
+    describe('wrapping.ribbonNeeded', function() {
+        it('should match the given inputs', function() {
+            assert.equal(wrapping.ribbonNeeded('2x3x4'), 34);
+            assert.equal(wrapping.ribbonNeeded('4x3x2'), 34);
+            assert.equal(wrapping.ribbonNeeded('1x1x10'), 14);
+        });
+    });
 });
