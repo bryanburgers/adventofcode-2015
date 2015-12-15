@@ -42,5 +42,16 @@ describe('08', function() {
                 expect(() => Str.parse('\\a')).toThrow();
             });
         });
+        describe('encode', function() {
+            it('encodes the empty string', function() {
+                expect(Str.encode('""')).toEqual('"\\"\\""');
+            });
+            it('encodes characters', function() {
+                expect(Str.encode('"abc"')).toEqual('"\\"abc\\""');
+            });
+            it('encodes slashes', function() {
+                expect(Str.encode('"a\\b"')).toEqual('"\\"a\\\\b\\""');
+            });
+        });
     });
 });

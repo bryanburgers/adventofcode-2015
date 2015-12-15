@@ -112,7 +112,7 @@ class Str {
         return str;
     }
     static encode(input) {
-
+        return '"' + input.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
     }
 }
 
