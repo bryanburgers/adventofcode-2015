@@ -25,7 +25,8 @@
     "09b": "node ./09/b.js < ./09/input",
     "10a": "node ./10/a.js < ./10/input",
     "10b": "node ./10/b.js < ./10/input",
-    "12a": "node ./12/a.js < ./12/input"
+    "12a": "node ./12/a.js < ./12/input",
+    "12b": "node ./12/b.js < ./12/input"
   },
   "repository": {
     "type": "git",
