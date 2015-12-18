@@ -29,7 +29,8 @@
     "12b": "node ./12/b.js < ./12/input",
     "13a": "node ./13/a.js < ./13/input",
     "13b": "node ./13/b.js < ./13/input",
-    "14a": "node ./14/a.js < ./14/input"
+    "14a": "node ./14/a.js < ./14/input",
+    "14b": "node ./14/b.js < ./14/input"
   },
   "repository": {
     "type": "git",

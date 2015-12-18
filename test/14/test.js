@@ -2,6 +2,7 @@
 
 const expect = require('expect');
 const Reindeer = require('../../14/reindeer');
+const pointrace = require('../../14/pointrace');
 
 describe('14', function() {
     describe('Reindeer', function() {
@@ -27,6 +28,36 @@ describe('14', function() {
                 expect(comet.distanceAfterSeconds(1000)).toEqual(1120);
                 expect(dancer.distanceAfterSeconds(1000)).toEqual(1056);
             })
+        });
+    });
+    describe('pointrace', function() {
+        it('should handle the example input correctly (1s)', function() {
+            let comet = new Reindeer('Comet', 14, 10, 127);
+            let dancer = new Reindeer('Dancer', 16, 11, 162);
+            let result = pointrace(1, [dancer, comet]);
+            expect(result.Comet).toEqual(0);
+            expect(result.Dancer).toEqual(1);
+        });
+        it('should handle the example input correctly (140s)', function() {
+            let comet = new Reindeer('Comet', 14, 10, 127);
+            let dancer = new Reindeer('Dancer', 16, 11, 162);
+            let result = pointrace(140, [dancer, comet]);
+            expect(result.Comet).toEqual(1);
+            expect(result.Dancer).toEqual(139);
+        });
+        it('should handle the example input correctly (1000s)', function() {
+            let comet = new Reindeer('Comet', 14, 10, 127);
+            let dancer = new Reindeer('Dancer', 16, 11, 162);
+            let result = pointrace(1000, [dancer, comet]);
+            expect(result.Comet).toEqual(312);
+            expect(result.Dancer).toEqual(689);
+        });
+        it('should handle the ties correctly', function() {
+            let comet = new Reindeer('Comet', 10, 5, 127);
+            let dancer = new Reindeer('Dancer', 10, 4, 162);
+            let result = pointrace(5, [dancer, comet]);
+            expect(result.Comet).toEqual(5);
+            expect(result.Dancer).toEqual(4);
         });
     });
 });
